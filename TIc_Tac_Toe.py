@@ -1,17 +1,8 @@
 from typing import SupportsIndex
 
 #Remaining tasks
-#2. Make each players move to not be the same. I haven't achieved this yet.
-"""
-I tried creating a new function for both player 1 and 2 respectively.
-The function is called when the player makes his second move of the game.
-The function checks if the move entered co-incides with a number (1-9)
-Then it checks if that square is occupied already.
-But for some reasn the function desn't work properly.
-Still very buggy
-"""
-#3. Print the 1-9 for the board.
 #4. Make computer make moves.
+
 def main():
     #This initializes the beggining of the game.
     one = " - "
@@ -48,10 +39,10 @@ def main():
             turns_one = turns_one + 1
             if turns_one == 1:
                 #run a special checker for move 1
-                player_one_move = get_first_player_one_move(turns_one)
+                player_one_move = get_player1_first_move(turns_one)
             else:
                 #run the other checker for moves 2 and above
-                player_one_move = get_player_one_move(turns_one, one, two, three, four, five, six, seven, eight, nine)
+                player_one_move = get_player1_other_moves(turns_one, one, two, three, four, five, six, seven, eight, nine)
             one, two, three, four, five, six, seven, eight, nine = update_board_one(one, two, three, four, five, six, seven, eight, nine, player_one_move)
             print_board(one, two, three, four, five, six, seven, eight, nine)
             over = check_if_winner_1(one, two, three, four, five, six, seven, eight, nine)
@@ -61,10 +52,10 @@ def main():
             turns_two = turns_two + 1
             if turns_two == 1:
                 #run a special checker for move 1
-                player_two_move = get_first_player_two_move(turns_two)
+                player_two_move = get_player2_first_move(turns_two)
             else:
                 #run the other checker for moves 2 and above
-                player_two_move = get_player_two_move(turns_two, one, two, three, four, five, six, seven, eight, nine)
+                player_two_move = get_player2_other_moves(turns_two, one, two, three, four, five, six, seven, eight, nine)
             one, two, three, four, five, six, seven, eight, nine = update_board_two(one, two, three, four, five, six, seven, eight, nine, player_two_move)
             print_board(one, two, three, four, five, six, seven, eight, nine)
             over = check_if_winner_2(one, two, three, four, five, six, seven, eight, nine)
@@ -220,9 +211,9 @@ def update_board_one(one, two, three, four, five, six, seven, eight, nine, playe
 
 #Get Players Moves
 """
-Get Player 1 move for turn 1.
+01. Get Player 1 move for turn 1.
 """
-def get_first_player_one_move(turns_one):
+def get_player1_first_move(turns_one):
     while True:
         turns_one = str(turns_one)
         player_one_move = int(input("Player one, Enter your " + (turns_one) + " move: "))
@@ -231,9 +222,9 @@ def get_first_player_one_move(turns_one):
         print ("Enter a valid move")
 
 """
-Get Player 1 move for turn 2, 3, 4, and 5.
+01 A.Get Player 1 move for turn 2, 3, 4, and 5.
 """
-def get_player_one_move(turns_one, one, two, three, four, five, six, seven, eight, nine):
+def get_player1_other_moves(turns_one, one, two, three, four, five, six, seven, eight, nine):
     while True:
         turns_one = str(turns_one)
         player_one_move = int(input("Player one, Enter your " + (turns_one) + " move: "))
@@ -242,24 +233,38 @@ def get_player_one_move(turns_one, one, two, three, four, five, six, seven, eigh
         print ("Enter a valid move")
 
 """
-Non Duplicate Checker for Player 1 for turn 2, 3, 4, and 5.
+01 B.Non Duplicate Checker for Player 1 for turn 2, 3, 4, and 5.
 """
 def non_duplicate_checker_1(player_one_move, one, two, three, four, five, six, seven, eight, nine):
-    if player_one_move == 1 and (one != " X " or one != " O "):
+    if player_one_move == 1 and one == " - ":
         return player_one_move
-    if player_one_move == 2 and (two != " X " or two != " O "):
+    elif player_one_move == 2 and two == " - ":
+        return player_one_move
+    elif player_one_move == 3 and three == " - ":
+        return player_one_move
+    elif player_one_move == 4 and four == " - ":
+        return player_one_move
+    elif player_one_move == 5 and five == " - ":
+        return player_one_move
+    elif player_one_move == 6 and six == " - ":
+        return player_one_move
+    elif player_one_move == 7 and seven == " - ":
+        return player_one_move
+    elif player_one_move == 8 and eight == " - ":
+        return player_one_move
+    elif player_one_move == 9 and nine == " - ":
         return player_one_move
 """
-Number clicked Checker for Player 1
+01 C.Number clicked Checker for Player 1
 """
 def is_valid_move_1(player_one_move):
     if 0 < player_one_move < 10:
         return player_one_move
 
 """
-Get Player 2 move for turn 1.
+02. Get Player 2 move for turn 1.
 """
-def get_first_player_two_move(turns_two):
+def get_player2_first_move(turns_two):
     while True:
         turns_two = str(turns_two)
         player_two_move = int(input("Player two, Enter your " + (turns_two) + " move: "))
@@ -268,9 +273,9 @@ def get_first_player_two_move(turns_two):
         print ("Enter a valid move")
 
 """
-Get Player 2 move for turn 2, 3, 4, and 5.
+02 A.Get Player 2 move for turn 2, 3, 4, and 5.
 """
-def get_player_two_move(turns_two, one, two, three, four, five, six, seven, eight, nine):
+def get_player2_other_moves(turns_two, one, two, three, four, five, six, seven, eight, nine):
     while True:
         turns_two = str(turns_two)
         player_two_move = int(input("Player two, Enter your " + (turns_two) + " move: "))
@@ -279,20 +284,33 @@ def get_player_two_move(turns_two, one, two, three, four, five, six, seven, eigh
         print ("Enter a valid move")
 
 """
-Non Duplicate Checker for Player 2
+02 B.Non Duplicate Checker for Player 2
 """
 def non_duplicate_checker_2(player_two_move, one, two, three, four, five, six, seven, eight, nine):
-    if player_two_move == 1 and (one != " X " or one != " O "):
+    if player_two_move == 1 and one == " - ":
+        return player_two_move 
+    elif player_two_move == 2 and two == " - ":
         return player_two_move
-
+    elif player_two_move == 3 and three == " - ":
+        return player_two_move
+    elif player_two_move == 4 and four == " - ":
+        return player_two_move
+    elif player_two_move == 5 and five == " - ":
+        return player_two_move
+    elif player_two_move == 6 and six == " - ":
+        return player_two_move
+    elif player_two_move == 7 and seven == " - ":
+        return player_two_move
+    elif player_two_move == 8 and eight == " - ":
+        return player_two_move
+    elif player_two_move == 9 and nine == " - ":
+        return player_two_move
 """
-Number clicked Checker for Player 2
+02 C.Number clicked Checker for Player 2
 """
 def is_valid_move_2(player_two_move):
     if 0 < player_two_move < 10:
         return player_two_move     
-
-
 
 """
 Print the current game state(Board)
