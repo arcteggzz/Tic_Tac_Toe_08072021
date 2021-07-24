@@ -1,6 +1,7 @@
 from typing import SupportsIndex
 
 #Remaining tasks
+#3. player 2 can overwrite player 1's first move.
 #4. Make computer make moves.
 
 def main():
@@ -60,7 +61,7 @@ def main():
             print_board(one, two, three, four, five, six, seven, eight, nine)
             over = check_if_winner_2(one, two, three, four, five, six, seven, eight, nine)
     print ('The game is Over') 
-        
+                                
 def check_if_winner_1(one, two, three, four, five, six, seven, eight, nine):
     over = True
     #1
